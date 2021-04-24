@@ -18,7 +18,7 @@ def register(request):
         if form.is_valid():
             form.save()
             messages.info(request, "Account created successfully, please log in.")
-            return redirect(login)
+            return redirect('login')
         else:
             messages.error(request, "Account cannot be created, some problem occurred.")
     else:
@@ -26,11 +26,6 @@ def register(request):
 
     return render(request, "register.html", {"form": form})
 
-
-def login(request):
-    template = loader.get_template('login.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
 
 @login_required
 def profile(request):
